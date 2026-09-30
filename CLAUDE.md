@@ -10,10 +10,14 @@ A WordPress/WooCommerce plugin that turns a Telegram bot into a shop channel pub
 - Publish WooCommerce products (image, title, price, description, link / buy button) to **multiple Telegram channels**.
 - The bot must be an **admin** of each target channel to post. Verify admin status (e.g. `getChatMember` / `getChatAdministrators`) before saving a channel or sending, and surface a clear error if it isn't.
 
-Open questions (confirm with the user before implementing):
-- Manual send only, or also auto-post on product publish/update?
-- In-Telegram ordering/checkout, or link back to the WooCommerce product page?
-- Per-product channel selection vs. global channel list?
+Decisions:
+- Channels are global (settings page); each product picks channels via checkboxes on create/edit.
+- Sending happens on publish, including scheduled products when they go live.
+- Message: multiple images → `sendMediaGroup`, one image → `sendPhoto`, none → `sendMessage`.
+- Inline URL button to the product page, label default `خرید`, editable in admin.
+- No ordering inside Telegram; posts link to the store.
+
+See `TODO.md` for the full plan and open questions.
 
 ## Stack
 

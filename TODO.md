@@ -15,7 +15,8 @@ Draft plan for review. Edit freely; items marked **❓** need a decision.
 - [ ] Field: **Bot token** (password input, show/hide toggle)
 - [ ] Button: **Test connection** → calls `getMe`, shows bot name + `@username` on success, error message on failure
 - [ ] Save token only if `getMe` succeeds
-- [ ] ❓ Default post template (e.g. `{image} {title} {price} {link}`) here or in a later phase?
+- [ ] Field: **Buy button text** (default: `خرید`)
+- [ ] ❓ Default post template (e.g. `{title} {price} {description}`) here or in a later phase?
 
 ### 1.2 Channels section
 
@@ -54,16 +55,35 @@ Channel                 Status        Action
 
 ## 2. Sending products
 
-- [ ] ❓ Where does the user send from?
-  - Product edit screen metabox: pick channels → **Send to Telegram**
-  - Products list bulk action: **Send to Telegram**
-  - Both
-- [ ] ❓ Auto-post on product publish / update?
-- [ ] Message: photo + caption (title, price, short description, link / "Buy" inline button)
-- [ ] Only enabled (green) channels are selectable
-- [ ] Re-verify admin before sending; skip + report failed channels
-- [ ] Show per-channel result (sent / failed + reason)
-- [ ] ❓ Keep send history per product (date, channel, message ID)? Allow edit/delete of posted message?
+Channels are **global** (managed on the settings page). Products pick which of them to post to.
+
+### 2.1 Product create / edit screen
+
+- [ ] Metabox **Telegram channels** with a checkbox per **enabled (green)** channel
+- [ ] Checked channels are saved as product meta
+- [ ] Sending is triggered when the product is **published**:
+  - [ ] Published now → send immediately
+  - [ ] Scheduled (`future`) → send when WordPress publishes it (`transition_post_status` future → publish)
+- [ ] Re-verify bot admin status before sending; skip and report failed channels
+- [ ] Show per-channel result in the metabox (sent / failed + reason, date)
+- [ ] ❓ Editing an already-published product with channels checked: send again, skip channels already sent to, or only send newly checked channels?
+- [ ] ❓ Uncheck all boxes after a successful send?
+
+### 2.2 Telegram message format
+
+- [ ] Caption/text: title, price, short description (❓ exact template / editable in admin?)
+- [ ] Choose the API method by product images (featured image + gallery):
+  - [ ] **Multiple images** → `sendMediaGroup` (album, max 10 images; caption on the first image)
+  - [ ] **One image** → `sendPhoto`
+  - [ ] **No image** → `sendMessage`
+- [ ] Inline URL button that opens the product page
+  - [ ] Default label: **خرید**
+  - [ ] Label editable on the settings page (field: *Buy button text*)
+- [ ] ⚠️ Telegram does **not** allow inline buttons on `sendMediaGroup` albums. ❓ Choose one:
+  - a) Send the album, then send a short `sendMessage` with the text + **خرید** button right after it (recommended)
+  - b) Send the album without a button; put the product link in the caption
+- [ ] Caption limit is 1024 chars for photos/albums (4096 for `sendMessage`) → truncate the description
+- [ ] Only posts link to the store; no ordering inside Telegram
 
 ## 3. Technical
 
@@ -78,6 +98,5 @@ Channel                 Status        Action
 
 ## 4. Later / ideas
 
-- [ ] ❓ Ordering inside Telegram (bot chat checkout) vs link to store only
 - [ ] Scheduled posts
 - [ ] Multiple bots
