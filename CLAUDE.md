@@ -14,7 +14,7 @@ Decisions:
 - Channels are global (settings page); each product picks channels via checkboxes on create/edit.
 - Sending happens on publish, including scheduled products when they go live.
 - Message: multiple images → `sendMediaGroup`, one image → `sendPhoto`, none → `sendMessage`.
-- Inline URL button to the product page, label default `خرید`, editable in admin.
+- Inline URL button to the product page, label default `خرید`, editable in admin. Albums can't carry buttons, so after `sendMediaGroup` send a short `sendMessage` with the button.
 - No ordering inside Telegram; posts link to the store.
 
 See `TODO.md` for the full plan and open questions.

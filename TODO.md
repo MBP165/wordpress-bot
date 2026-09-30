@@ -79,9 +79,9 @@ Channels are **global** (managed on the settings page). Products pick which of t
 - [ ] Inline URL button that opens the product page
   - [ ] Default label: **خرید**
   - [ ] Label editable on the settings page (field: *Buy button text*)
-- [ ] ⚠️ Telegram does **not** allow inline buttons on `sendMediaGroup` albums. ❓ Choose one:
-  - a) Send the album, then send a short `sendMessage` with the text + **خرید** button right after it (recommended)
-  - b) Send the album without a button; put the product link in the caption
+- [ ] Albums: Telegram does not allow inline buttons on `sendMediaGroup`, so:
+  - [ ] Send the album (images only, caption on first image)
+  - [ ] Right after, `sendMessage` with a short text + **خرید** button
 - [ ] Caption limit is 1024 chars for photos/albums (4096 for `sendMessage`) → truncate the description
 - [ ] Only posts link to the store; no ordering inside Telegram
 
