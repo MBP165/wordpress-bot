@@ -66,7 +66,9 @@ Channels are **global** (managed on the settings page). Products pick which of t
   - [ ] Scheduled (`future`) → send when WordPress publishes it (`transition_post_status` future → publish)
 - [ ] Re-verify bot admin status before sending; skip and report failed channels
 - [ ] Show per-channel result in the metabox (sent / failed + reason, date)
-- [ ] ❓ Editing an already-published product with channels checked: send again, skip channels already sent to, or only send newly checked channels?
+- [ ] Editing an already-published product with channels checked → **send again** to those channels
+- [ ] Next to each channel checkbox, if already sent, show a note: *"Already sent to this channel"* (with last send date)
+- [ ] Store send history in product meta (`chat_id`, date, message IDs)
 - [ ] ❓ Uncheck all boxes after a successful send?
 
 ### 2.2 Telegram message format
