@@ -98,5 +98,4 @@ Channels are **global** (managed on the settings page). Products pick which of t
 
 ## 4. Later / ideas
 
-- [ ] Scheduled posts
 - [ ] Multiple bots
