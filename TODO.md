@@ -16,7 +16,6 @@ Draft plan for review. Edit freely; items marked **❓** need a decision.
 - [ ] Button: **Test connection** → calls `getMe`, shows bot name + `@username` on success, error message on failure
 - [ ] Save token only if `getMe` succeeds
 - [ ] Field: **Buy button text** (default: `خرید`)
-- [ ] ❓ Default post template (e.g. `{title} {price} {description}`) here or in a later phase?
 
 ### 1.2 Channels section
 
@@ -50,8 +49,8 @@ Channel                 Status        Action
   - [ ] Loading state (spinner, button disabled) while checking
 - [ ] **Remove** button → confirm dialog, delete channel
 - [ ] Prevent duplicate channels (compare by numeric chat ID)
-- [ ] ❓ Existing saved channel that later loses admin rights: re-check automatically (on page load / before sending) and mark red + disabled, or remove it?
-- [ ] ❓ Allow manual enable/disable toggle per channel?
+- [ ] Saved channel that later loses admin rights → re-check (on settings page load and before sending) and mark **red + disabled** (kept in the list, not removed; hidden from product checkboxes until re-checked green)
+- [ ] No manual on/off switch; channel status comes only from the admin check
 
 ## 2. Sending products
 
@@ -74,7 +73,7 @@ Channels are **global** (managed on the settings page). Products pick which of t
 
 ### 2.2 Telegram message format
 
-- [ ] Caption/text: title, price, short description (❓ exact template / editable in admin?)
+- [ ] Caption/text uses a **fixed** template (not editable): title, price, short description
 - [ ] Choose the API method by product images (featured image + gallery):
   - [ ] **Multiple images** → `sendMediaGroup` (album, max 10 images; caption on the first image)
   - [ ] **One image** → `sendPhoto`
@@ -91,7 +90,7 @@ Channels are **global** (managed on the settings page). Products pick which of t
 ## 3. Technical
 
 - [ ] `Wordpress_Bot_Telegram_Client` — single class for API calls (`wp_remote_post`), error + HTTP 429 `retry_after` handling
-- [ ] Storage: token + channels in `wp_options` (channels as array: `chat_id`, `username`, `title`, `status`, `checked_at`) — ❓ or a custom table?
+- [ ] Storage: token + channels in `wp_options` (channels as array: `chat_id`, `username`, `title`, `status`, `checked_at`)
 - [ ] Token never exposed to front-end JS or logs
 - [ ] AJAX handlers: nonce + `current_user_can()` + sanitization
 - [ ] i18n for all strings (text domain `wordpress-bot`)

@@ -16,8 +16,11 @@ Decisions:
 - Message: multiple images → `sendMediaGroup`, one image → `sendPhoto`, none → `sendMessage`.
 - Inline URL button to the product page, label default `خرید`, editable in admin. Albums can't carry buttons, so after `sendMediaGroup` send a short `sendMessage` with the button.
 - No ordering inside Telegram; posts link to the store.
+- Message text template is fixed (title, price, short description).
+- A channel that loses admin rights is marked red/disabled (not removed). No manual on/off switch.
+- Storage: `wp_options` (no custom tables); send history in product meta.
 
-See `TODO.md` for the full plan and open questions.
+See `TODO.md` for the full plan.
 
 ## Stack
 
