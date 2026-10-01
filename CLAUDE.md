@@ -12,7 +12,7 @@ A WordPress/WooCommerce plugin that turns a Telegram bot into a shop channel pub
 
 Decisions:
 - Channels are global (settings page); each product picks channels via checkboxes on create/edit.
-- Sending happens on publish, including scheduled products when they go live. Updating a published product with channels checked sends again; the edit screen shows "Already sent to this channel" per channel.
+- Sending happens on publish, including scheduled products when they go live. Updating a published product with channels checked sends again; after a successful send the checkbox is cleared, the send is stored, and the edit screen shows "Already sent to this channel" (with date) beside it.
 - Message: multiple images → `sendMediaGroup`, one image → `sendPhoto`, none → `sendMessage`.
 - Inline URL button to the product page, label default `خرید`, editable in admin. Albums can't carry buttons, so after `sendMediaGroup` send a short `sendMessage` with the button.
 - No ordering inside Telegram; posts link to the store.

@@ -69,7 +69,8 @@ Channels are **global** (managed on the settings page). Products pick which of t
 - [ ] Editing an already-published product with channels checked → **send again** to those channels
 - [ ] Next to each channel checkbox, if already sent, show a note: *"Already sent to this channel"* (with last send date)
 - [ ] Store send history in product meta (`chat_id`, date, message IDs)
-- [ ] ❓ Uncheck all boxes after a successful send?
+- [ ] After a successful send, **uncheck** that channel's checkbox (failed channels stay checked)
+- [ ] Each successful send is stored, so the "Already sent" note + date stays visible beside the checkbox
 
 ### 2.2 Telegram message format
 
